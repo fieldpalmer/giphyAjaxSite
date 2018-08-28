@@ -48,15 +48,32 @@
                 gifDiv.append(titleText);
 
                 // Storing & displaying  the gif url
-                var imgUrl = response.data[j].images.original.url;
+                var imgUrl = response.data[j].images;
                 var gifDisplay = $("<img>");
-                gifDisplay.attr("src", imgUrl);
+                gifDisplay.attr("src", imgUrl.downsized_still.url);
+                gifDisplay.attr("data-still", imgUrl.downsized_still.url);
+                gifDisplay.attr("data-animate", imgUrl.downsized.url);
+                gifDisplay.attr("data-state", "still");
+                gifDisplay.attr("class", "gif")
+                
                 gifDiv.append(gifDisplay);
 
                 // Putting the entire gif set above the previous gifs
                 $("#gifs-view").prepend(gifDiv);
             }
-        });    
+
+            $(".gif").on("click", function() {
+                var state = $(this).attr("data-state");
+                if (state === "still") {
+                  $(this).attr("src", $(this).attr("data-animate"));
+                  $(this).attr("data-state", "animate");
+                } else {
+                  $(this).attr("src", $(this).attr("data-still"));
+                  $(this).attr("data-state", "still");
+                }
+              });
+        });   
+         
     }
     // This function handles events where a movie button is clicked
     $("#add-gif").on("click", function(event) {
