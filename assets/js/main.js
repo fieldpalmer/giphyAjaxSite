@@ -35,17 +35,7 @@
             for (var j = 0 ; j < response.data.length ; j++) {
             
                 // Creating a div to hold the gifs
-                var gifDiv = $("<div class='gifs'>");
-                
-                // Storing & displaying the rating data
-                var gifRating = response.data[j].rating;
-                var ratingText = $("<p>").text("Rating: " + gifRating);
-                gifDiv.append(ratingText);
-
-                // Storing & displaying  the gif title
-                var gifTitle = response.data[j].title;
-                var titleText = $("<p>").text("Title: " + gifTitle);
-                gifDiv.append(titleText);
+                var gifSpan = $("<span class='gifs'>");
 
                 // Storing & displaying  the gif url
                 var imgUrl = response.data[j].images;
@@ -54,12 +44,24 @@
                 gifDisplay.attr("data-still", imgUrl.downsized_still.url);
                 gifDisplay.attr("data-animate", imgUrl.downsized.url);
                 gifDisplay.attr("data-state", "still");
-                gifDisplay.attr("class", "gif")
-                
-                gifDiv.append(gifDisplay);
+                gifDisplay.attr("class", "gif card");
+                gifSpan.append(gifDisplay);
+
+                // Storing & displaying  the gif title
+                var gifTitle = response.data[j].title;
+                var titleText = $("<h5>").text(gifTitle);
+                titleText.attr("class", "card-title");
+                // gifTitle.remove("GIF");
+                gifSpan.append(titleText);
+
+                // Storing & displaying the rating data
+                var gifRating = response.data[j].rating;
+                var ratingText = $("<p>").text("Rating: " + gifRating);
+                ratingText.attr("class", "card-text");                
+                gifSpan.append(ratingText);
 
                 // Putting the entire gif set above the previous gifs
-                $("#gifs-view").prepend(gifDiv);
+                $("#gifs-view").prepend(gifSpan);
             }
 
             $(".gif").on("click", function() {

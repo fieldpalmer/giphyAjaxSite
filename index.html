@@ -10,22 +10,32 @@
 </head>
 <body>
     <div class='container'>
-            <h1>Gif Search</h1>
+            <h1>GIFtastic Search</h1>
             <!-- Rendered Buttons will get Dumped Here  -->
-            <div id="buttons-view"></div>
-        
-            <form id="movie-form">
-              <label for="gif-request">Find Your Own Favorites!</label>
-              <input type="text" id="gif-request">
-              <br>
-        
-              <!-- Button triggers new movie to be added -->
-              <input id="add-gif" type="submit" value="Add a Gif, Bro!">
-            </form>
-
+            <div class="row buttons">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <span id="buttons-view"></span>
+                </div>
+            </div>
             <div class="row">
-                <div id="gifs-view"></div>
-            </div> 
+                <div class="col-sm-2 col-md-2 col-lg-2 sidebar">
+                    <h4>Press Buttons</h4>
+                    <h4>Click GIFs</h4>
+                    <form id="movie-form">
+                        <label for="gif-request">Add Your Own</label>
+                        <input type="text" id="gif-request" placeholder=
+                        "type topic here">
+                        <br>
+                    
+                        <!-- Button triggers new movie to be added -->
+                        <input id="add-gif" type="submit" value="Add a Gif Button, Bro!"> 
+                    </form>            
+                </div>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                    <div id="gifs-view"></div>
+                </div>
+            </div>
+            
     </div>
     
     

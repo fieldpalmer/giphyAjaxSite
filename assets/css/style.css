@@ -1,4 +1,23 @@
 .gifs {
     display:inline-block;
-    padding: 5px;
+    margin: 5px;
+}
+
+form {
+    padding: 10px;
+}
+
+#gifs-view {
+    border-left: 1px solid gray;
+}
+
+#buttons-view {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding:15px;
+}
+
+.buttons {
+    margin:25px;
+    padding: 20px;;
 }
