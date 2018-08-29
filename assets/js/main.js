@@ -35,23 +35,14 @@
             for (var j = 0 ; j < response.data.length ; j++) {
             
                 // Creating a div to hold the gifs
-                var gifSpan = $("<span class='gifs'>");
-
-                // Storing & displaying  the gif url
-                var imgUrl = response.data[j].images;
-                var gifDisplay = $("<img>");
-                gifDisplay.attr("src", imgUrl.downsized_still.url);
-                gifDisplay.attr("data-still", imgUrl.downsized_still.url);
-                gifDisplay.attr("data-animate", imgUrl.downsized.url);
-                gifDisplay.attr("data-state", "still");
-                gifDisplay.attr("class", "gif card");
-                gifSpan.append(gifDisplay);
+                var gifSpan = $("<div>");
+                gifSpan.attr("class", "gifs card p-3 align-middle d-inline-block");
+                gifSpan.attr("style", "width: 18rem");
 
                 // Storing & displaying  the gif title
                 var gifTitle = response.data[j].title;
                 var titleText = $("<h5>").text(gifTitle);
-                titleText.attr("class", "card-title");
-                // gifTitle.remove("GIF");
+                titleText.attr("class", "card-title pt-2");
                 gifSpan.append(titleText);
 
                 // Storing & displaying the rating data
@@ -60,8 +51,34 @@
                 ratingText.attr("class", "card-text");                
                 gifSpan.append(ratingText);
 
+                //Creating and linking button to add to favorites / local storage
+                var faveButton = $("<input>");
+                faveButton.attr("type", "button");
+                faveButton.attr("class", "btn btn-success");
+                faveButton.attr("value", "Favorite");
+                gifSpan.append(faveButton);
+                var cardBody = $("<div>");
+                cardBody.attr("class", "card-body");
+                gifSpan.wrap(cardBody);
+
+                // Storing & displaying  the gif url
+                var imgUrl = response.data[j].images;
+
+                var gifDisplay = $("<img>");
+                gifDisplay.attr("src", imgUrl.downsized_still.url);
+                gifDisplay.attr("data-still", imgUrl.downsized_still.url);
+                gifDisplay.attr("data-animate", imgUrl.downsized.url);
+                gifDisplay.attr("data-state", "still");
+                gifDisplay.attr("class", "gif card-img-top");
+                gifSpan.prepend(gifDisplay);
+
+                //displaying the gif cards in columns
+                gifCardCols = $("<div>");
+                gifCardCols.attr("class", "card-columns")
+                gifSpan.wrap(gifCardCols);
+
                 // Putting the entire gif set above the previous gifs
-                $("#gifs-view").prepend(gifSpan);
+                $("#gifs-view").attr("class", "bg-dark").prepend(gifSpan);
             }
 
             $(".gif").on("click", function() {
@@ -89,6 +106,7 @@
         });
 
     // Adding a click event listener to all elements with a class of "gif-btn"
-    $(document).on("click", ".gif-btn", displayGifInfo);
+    $(document).on("click", ".gif-btn", displayGifInfo)
+    
     // Calling the renderButtons function to display the intial buttons
     renderButtons();
