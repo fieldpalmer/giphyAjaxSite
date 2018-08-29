@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class='container'>
+        <hr>
             <h1>GIFtastic Search</h1>
             <hr>
             <div class="row buttons">
@@ -19,24 +20,29 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-sm-2 col-md-2 col-lg-2 sidebar">
-                    <h4>Press Buttons</h4>
-                    <h4>Click GIFs</h4>
-                    <form id="movie-form">
-                        <label for="gif-request">Add Your Own</label>
-                        <input type="text" id="gif-request" placeholder=
-                        "type topic here">
-                        <br>
-                    
-                        <!-- Button triggers new movie to be added -->
-                        <input id="add-gif" type="submit" value="Add a Gif Button, Bro!"> 
-                    </form>            
+                <div class="col col-sm-12">
+                    <p>Press buttons above to load GIFs. Click each GIF to play/pause. Add to favorites to save for later. Create your own GIF button by searching new topics.</p>
                 </div>
-                <div class="col-sm-10 col-md-10 col-lg-10">
+
+                <div class="col-sm-4 col-md-3 col-lg-2">
+                    <form id="gif-form">
+                        <input class="form-control" type="text" id="gif-request" placeholder=
+                        "search here">
+                        <br>
+                        <!-- Button triggers new movie to be added -->
+                        <input class="btn btn-outline-primary my-1" id="add-gif" type="submit" value="Add Button"> 
+                    </form>   
+                    <hr>
+                    <h4><a href='#'>Favorites</a></h4>
+                    <hr>
+                    <span class="fave-gifs"></span>
+                </div>
+
+                <div class="col-sm-8 col-md-9 col-lg-10 scrollBox">
                     <div id="gifs-view"></div>
                 </div>
+                
             </div>
-            
     </div>
     
     

@@ -5,11 +5,15 @@
 
 form {
     padding: 10px;
+    padding-left: none;
 }
 
 #gifs-view {
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;    
     margin-left:15px;
     padding:10px;
+}
+
+.scrollBox {
+    height: 550px;
+    overflow-y: scroll;
 }

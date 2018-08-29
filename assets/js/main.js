@@ -1,5 +1,5 @@
     // Initial array of topic buttons
-    var topics = ['90s', 'Gandalf', 'woah dude', 'psychadelic', 'happy dance', 'awesome', 'cool beans', 'monty python', 'jim carrey', 'dancing baby'];
+    var topics = ['90s', 'Gandalf', 'fail', 'psychadelic', 'dogs', 'awesome', 'flight', 'monty python', 'dunk', 'dancing baby'];
     // Function for displaying buttons with topic data
     function renderButtons() {
         // Deleting the gifs prior to adding new gifs
@@ -11,7 +11,7 @@
             // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
             var gifButton = $("<button>");
             // Adding a class of movie-btn to our button
-            gifButton.addClass("gif-btn");
+            gifButton.addClass("gif-btn btn btn-outline-primary m-1");
             // Adding a data-attribute
             gifButton.attr("data-name", topics[i]);
             // Providing the initial button text
@@ -37,7 +37,7 @@
                 // Creating a div to hold the gifs
                 var gifSpan = $("<div>");
                 gifSpan.attr("class", "gifs card p-3 align-middle d-inline-block");
-                gifSpan.attr("style", "width: 18rem");
+                gifSpan.attr("style", "width: 17rem");
 
                 // Storing & displaying  the gif title
                 var gifTitle = response.data[j].title;
@@ -54,9 +54,11 @@
                 //Creating and linking button to add to favorites / local storage
                 var faveButton = $("<input>");
                 faveButton.attr("type", "button");
-                faveButton.attr("class", "btn btn-success");
+                faveButton.attr("class", "btn btn-success btn-block");
                 faveButton.attr("value", "Favorite");
                 gifSpan.append(faveButton);
+
+
                 var cardBody = $("<div>");
                 cardBody.attr("class", "card-body");
                 gifSpan.wrap(cardBody);
@@ -78,7 +80,7 @@
                 gifSpan.wrap(gifCardCols);
 
                 // Putting the entire gif set above the previous gifs
-                $("#gifs-view").attr("class", "bg-dark").prepend(gifSpan);
+                $("#gifs-view").attr("class", "bg-dark").append(gifSpan);
             }
 
             $(".gif").on("click", function() {
