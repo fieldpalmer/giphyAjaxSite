@@ -17,3 +17,8 @@ form {
     height: 550px;
     overflow-y: scroll;
 }
+
+.fave-gifs {
+    height:300px;
+    overflow-y: scroll;
+}

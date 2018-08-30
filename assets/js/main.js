@@ -1,5 +1,8 @@
     // Initial array of topic buttons
     var topics = ['90s', 'Gandalf', 'fail', 'psychadelic', 'dogs', 'awesome', 'flight', 'monty python', 'dunk', 'dancing baby'];
+    //blank array to hold thumbnails of favorite gifs
+    var faveGifs = [];
+
     // Function for displaying buttons with topic data
     function renderButtons() {
         // Deleting the gifs prior to adding new gifs
@@ -18,7 +21,7 @@
             gifButton.text(topics[i]);
             // Adding the button to the buttons-view div
             $("#buttons-view").append(gifButton);
-        }
+        }   
     }
 
     // displayMovieInfo function re-renders the HTML to display the appropriate content
@@ -36,7 +39,7 @@
             
                 // Creating a div to hold the gifs
                 var gifSpan = $("<div>");
-                gifSpan.attr("class", "gifs card p-3 align-middle d-inline-block");
+                gifSpan.attr("class", "gifs card p-3 align-middle d-inline-block text-white bg-dark");
                 gifSpan.attr("style", "width: 17rem");
 
                 // Storing & displaying  the gif title
@@ -51,14 +54,6 @@
                 ratingText.attr("class", "card-text");                
                 gifSpan.append(ratingText);
 
-                //Creating and linking button to add to favorites / local storage
-                var faveButton = $("<input>");
-                faveButton.attr("type", "button");
-                faveButton.attr("class", "btn btn-success btn-block");
-                faveButton.attr("value", "Favorite");
-                gifSpan.append(faveButton);
-
-
                 var cardBody = $("<div>");
                 cardBody.attr("class", "card-body");
                 gifSpan.wrap(cardBody);
@@ -70,9 +65,18 @@
                 gifDisplay.attr("src", imgUrl.downsized_still.url);
                 gifDisplay.attr("data-still", imgUrl.downsized_still.url);
                 gifDisplay.attr("data-animate", imgUrl.downsized.url);
+                // gifDisplay.attr("data-thumbnail", imgUrl.fixed_height_small.url)
                 gifDisplay.attr("data-state", "still");
                 gifDisplay.attr("class", "gif card-img-top");
                 gifSpan.prepend(gifDisplay);
+
+                //Creating and linking button to add to favorites / local storage
+                var faveButton = $("<input>");
+                faveButton.attr("class", "btn btn-success btn-block");
+                faveButton.attr("id", "faveBTN");
+                faveButton.attr("value", "Favorite");
+                faveButton.attr("data-thumbnail", imgUrl.fixed_height_small.url);
+                gifSpan.append(faveButton);
 
                 //displaying the gif cards in columns
                 gifCardCols = $("<div>");
@@ -80,10 +84,25 @@
                 gifSpan.wrap(gifCardCols);
 
                 // Putting the entire gif set above the previous gifs
-                $("#gifs-view").attr("class", "bg-dark").append(gifSpan);
+                $("#gifs-view").prepend(gifSpan);
+    
+                $("#faveBTN").on("click", function(){
+                            
+                    var newFave = $("<img>");
+                    var faveGifSrc = $(this).attr("data-thumbnail")
+                    faveGifs.push(faveGifSrc);
+                    newFave.attr("src", faveGifSrc);
+                    newFave.attr("class", "m-1");
+                    $(".fave-gifs").prepend(newFave);
+                    localStorage.setItem("gifSrcArray", JSON.stringify(faveGifs));
+        
+                })
+
             }
 
+
             $(".gif").on("click", function() {
+
                 var state = $(this).attr("data-state");
                 if (state === "still") {
                   $(this).attr("src", $(this).attr("data-animate"));
@@ -92,11 +111,10 @@
                   $(this).attr("src", $(this).attr("data-still"));
                   $(this).attr("data-state", "still");
                 }
-              });
+            });
         });   
-         
     }
-    // This function handles events where a movie button is clicked
+
     $("#add-gif").on("click", function(event) {
         event.preventDefault();
         // This line grabs the input from the textbox
@@ -105,10 +123,21 @@
         topics.push(newTopic);
         // Calling renderButtons which handles the processing of our movie array
         renderButtons();
-        });
+    });    
 
+    function showFaves() {
+        for (var k = 0 ; k < faveGifs.length ; k++) {
+            var newFave = $("<img>");        
+            newFave.attr("src", localStorage.getItem("gifSrcArray["+k+"]"));
+            newFave.attr("class", "m-1");
+            $(".fave-gifs").append(newFave);
+        };
+    }
+
+    
     // Adding a click event listener to all elements with a class of "gif-btn"
     $(document).on("click", ".gif-btn", displayGifInfo)
     
     // Calling the renderButtons function to display the intial buttons
     renderButtons();
+    showFaves();
