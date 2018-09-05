@@ -1,24 +1,88 @@
 .gifs {
-    margin: 2px;
+    margin: 10px;
     text-align:center;
+    border: 1px solid rgb(61, 61, 61);
+    background-color: #00fbff00;
 }
 
 form {
-    padding: 10px;
-    padding-left: none;
+    width: 170px;
+    padding: 15px;
+    border: solid 1px #39FF14;
+    padding-bottom: 30px;
 }
 
 #gifs-view {
     margin-left:15px;
     padding:10px;
-}
-
-.scrollBox {
-    height: 550px;
+    height:500px;
+    border: solid 1px #39FF14;
     overflow-y: scroll;
+    overflow-x:hidden;
 }
 
 .fave-gifs {
-    height:300px;
+    height:380px;
+    width: 170px;
+    padding:5px;
     overflow-y: scroll;
+    overflow-x:hidden;
+    border: solid 1px #39FF14;
+
 }
+
+#scrollbar::-webkit-scrollbar:horizontal,
+#big-scroll::-webkit-scrollbar:horizontal
+{
+    display: none;
+}
+
+#scrollbar::-webkit-scrollbar,
+#big-scroll::-webkit-scrollbar,
+.scrollBox::-webkit-scrollbar
+{
+    background-color: rgba(255, 153, 0, 0.1);
+    width: 6px;
+    padding: 1px;
+}
+
+#scrollbar::-webkit-scrollbar-thumb,
+#big-scroll::-webkit-scrollbar-thumb,
+.scrollBox::-webkit-scrollbar-thumb 
+{
+    background-color:#39FF14;
+}
+
+#scrollbar::-webkit-scrollbar-corner,
+#big-scroll::-webkit-scrollbar-corner,
+.scrollBox::-webkit-scrollbar-corner
+{
+    background-color: none;
+}
+
+body {
+    background-image: url("../images/darkness.png");
+    color: white;
+    overflow:scroll;
+    margin-bottom:20px;
+}
+
+a {
+    color:white;
+}
+
+a:hover {
+    color:#00f9ff;
+}
+
+.btn {
+    border: 1px solid #00f9ff;
+    background-color: #00fbff00;
+    color: #00f9ff;
+    border-radius: 4px;
+}
+
+#faveBTN:hover {
+    background-color: #33b5e5;
+}
+

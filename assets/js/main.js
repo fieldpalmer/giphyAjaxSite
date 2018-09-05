@@ -1,5 +1,5 @@
     // Initial array of topic buttons
-    var topics = ['90s', 'Gandalf', 'fail', 'psychadelic', 'dogs', 'awesome', 'flight', 'monty python', 'dunk', 'dancing baby'];
+    var topics = ['90s', 'Computers', 'Gandalf', 'funny', 'psychadelic', 'animals', 'awesome', 'flight', 'monty python', 'dunk', 'dancing baby', 'yoda'];
     //blank array to hold thumbnails of favorite gifs
     var faveGifs = [];
 
@@ -14,7 +14,7 @@
             // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
             var gifButton = $("<button>");
             // Adding a class of movie-btn to our button
-            gifButton.addClass("gif-btn btn btn-outline-primary m-1");
+            gifButton.addClass("gif-btn btn btn-outline-info m-1");
             // Adding a data-attribute
             gifButton.attr("data-name", topics[i]);
             // Providing the initial button text
@@ -39,7 +39,7 @@
             
                 // Creating a div to hold the gifs
                 var gifSpan = $("<div>");
-                gifSpan.attr("class", "gifs card p-3 align-middle d-inline-block text-white bg-dark");
+                gifSpan.attr("class", "gifs card p-3 align-middle d-inline-block text-white");
                 gifSpan.attr("style", "width: 17rem");
 
                 // Storing & displaying  the gif title
@@ -126,9 +126,10 @@
     });    
 
     function showFaves() {
-        for (var k = 0 ; k < faveGifs.length ; k++) {
+        var retrieveFaves = JSON.parse(localStorage.getItem("gifSrcArray"));        
+        for (var k = 0 ; k < retrieveFaves.length ; k++) {
             var newFave = $("<img>");        
-            newFave.attr("src", localStorage.getItem("gifSrcArray["+k+"]"));
+            newFave.attr("src", retrieveFaves[k]);
             newFave.attr("class", "m-1");
             $(".fave-gifs").append(newFave);
         };
